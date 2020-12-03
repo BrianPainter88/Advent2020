@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Advent2020.Business;
+using Advent2020.Business.Days;
 using Advent2020.Business.Interfaces;
 using Moq;
 using NUnit.Framework;

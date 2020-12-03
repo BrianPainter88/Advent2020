@@ -154,5 +154,35 @@ namespace Advent2020.Business {
                 return ResourceManager.GetString("Day1", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6-8 s: svsssszslpsp
+        ///3-4 n: gncn
+        ///4-8 v: vkvmvdmvhttvvrgvvwv
+        ///16-18 j: jjjjjjjjjjjjjjjjjf
+        ///13-15 p: pppppppvppppxxppp
+        ///3-4 k: bkksggqbtwkkkzqcz
+        ///8-18 x: qxphxxtczxxxxxrbxxl
+        ///6-11 c: dccxcccccchrcfdckcsc
+        ///10-11 c: ccvxccccccccc
+        ///2-4 f: pszff
+        ///18-20 z: zzzzzzzzzzwzzzzzzzzj
+        ///1-7 g: ggggggpggggggg
+        ///3-5 h: hhhhfhh
+        ///2-5 x: dxxzxv
+        ///7-8 s: ssssssss
+        ///3-9 k: ktkkkkkklkck
+        ///2-9 r: rzrrrrrrrrrrrr
+        ///5-9 k: tkrkhkxbvkbkkkkk
+        ///8-9 n: tnnpbnrns
+        ///14-15 q: qqqqqqqqqqqqqqqq
+        ///11-12 q: cqqqqqqqqqsqqqlqqqqq
+        ///15-17 v: vvvvvvvvvvnvvv [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day2 {
+            get {
+                return ResourceManager.GetString("Day2", resourceCulture);
+            }
+        }
     }
 }

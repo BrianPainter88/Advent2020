@@ -2,7 +2,7 @@
 using System.Linq;
 using Advent2020.Business.Interfaces;
 
-namespace Advent2020.Business
+namespace Advent2020.Business.Days
 {
     public class Day1
     {

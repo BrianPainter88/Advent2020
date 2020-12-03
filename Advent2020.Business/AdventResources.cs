@@ -14,5 +14,10 @@ namespace Advent2020.Business
                     .Where(v => int.TryParse(v, out _))
                     .Select(int.Parse);
         }
+
+        public IEnumerable<string> GetDay2Resources()
+        {
+            return Resources.Day2.Split(Environment.NewLine);
+        }
     }
 }

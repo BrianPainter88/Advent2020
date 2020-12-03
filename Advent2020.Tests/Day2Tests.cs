@@ -23,12 +23,12 @@ namespace Advent2020.Tests
         [TestCase("1-3 a: abcde", 1, 3, "a", "abcde")]
         [TestCase("1-3 b: cdefg", 1, 3, "b", "cdefg")]
         [TestCase("2-9 c: ccccccccc", 2, 9, "c", "ccccccccc")]
-        public void ParseInput_ShouldSplitStringParts(string parsableString, int expectedMin, int expectedMax, string expectedLetter, string expectedString)
+        public void ParseInput_ShouldSplitStringParts(string parsableString, int expectedFirstPosition, int expectedSecondPosition, string expectedLetter, string expectedString)
         {
             var result = _day2.Parse(parsableString);
 
-            Assert.That(result, Has.Property("MinimumCount").EqualTo(expectedMin));
-            Assert.That(result, Has.Property("MaximumCount").EqualTo(expectedMax));
+            Assert.That(result, Has.Property("FirstPosition").EqualTo(expectedFirstPosition));
+            Assert.That(result, Has.Property("SecondPosition").EqualTo(expectedSecondPosition));
             Assert.That(result, Has.Property("StringToSearchFor").EqualTo(expectedLetter));
             Assert.That(result, Has.Property("StringToBeSearched").EqualTo(expectedString));
         }
@@ -58,20 +58,20 @@ namespace Advent2020.Tests
         {
             _adventResourcesMock
                 .Setup(a => a.GetDay2Resources())
-                .Returns(GetTestPassords());
+                .Returns(Get3ValidAnd2InvalidTestPasswords());
 
             Assert.That(_day2.GetAnswer(), Is.EqualTo(3));
         }
 
-        private IEnumerable<string> GetTestPassords()
+        private IEnumerable<string> Get3ValidAnd2InvalidTestPasswords()
         {
             return new[]
             {
-                "1-3 a: abcde",
-                "1-3 a: bbbbb",
-                "2-4 a: aabbccddeeaa",
-                "2-4 a: baaaaab",
-                "5-10 a: abacadaeafaga"
+                "1-3 a: abgda", // valid
+                "1-3 a: bbabb", // valid
+                "2-4 a: aebetcddeeaa", // invalid
+                "2-4 a: baaaaab", // invalid
+                "5-10 a: abactdaeaafga" // valid
             };
         }
 
@@ -79,9 +79,9 @@ namespace Advent2020.Tests
         {
             return new[]
             {
-                new PasswordParts {MinimumCount = 1, MaximumCount = 3, StringToSearchFor = "a", StringToBeSearched = "abcde"},
-                new PasswordParts {MinimumCount = 2, MaximumCount = 4, StringToSearchFor = "a", StringToBeSearched = "aabbccddeeaa"},
-                new PasswordParts {MinimumCount = 5, MaximumCount = 10, StringToSearchFor = "a", StringToBeSearched = "abacadaeafaga"}
+                new PasswordParts {FirstPosition = 1, SecondPosition = 3, StringToSearchFor = "a", StringToBeSearched = "abfda"},
+                new PasswordParts {FirstPosition = 2, SecondPosition = 4, StringToSearchFor = "a", StringToBeSearched = "a4baccddeeaa"},
+                new PasswordParts {FirstPosition = 5, SecondPosition = 10, StringToSearchFor = "a", StringToBeSearched = "abacadaeaofga"}
             };
         }
 
@@ -89,8 +89,9 @@ namespace Advent2020.Tests
         {
             return new[]
             {
-                new PasswordParts {MinimumCount = 1, MaximumCount = 3, StringToSearchFor = "a", StringToBeSearched = "bbbbb"},
-                new PasswordParts {MinimumCount = 2, MaximumCount = 4, StringToSearchFor = "a", StringToBeSearched = "baaaaab"}
+                new PasswordParts {FirstPosition = 1, SecondPosition = 3, StringToSearchFor = "a", StringToBeSearched = "ababb"},
+                new PasswordParts {FirstPosition = 2, SecondPosition = 4, StringToSearchFor = "b", StringToBeSearched = "aaa"},
+                new PasswordParts {FirstPosition = 3, SecondPosition = 5, StringToSearchFor = "c", StringToBeSearched = "ggggggggg"}
             };
         }
     }

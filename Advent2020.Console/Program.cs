@@ -28,7 +28,7 @@ namespace Advent2020.Program
                 var day2 = new Day2(adventResources);
 
                 var day2Answer = day2.GetAnswer();
-                WriteAnswerToConsole("Day2 (Part1)", day2Answer, ConsoleColor.Blue);
+                WriteAnswerToConsole("Day2 (Part2)", day2Answer, ConsoleColor.Blue);
             }
         }
 

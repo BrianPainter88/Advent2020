@@ -34,8 +34,8 @@ namespace Advent2020.Business.Days
             {
                 return new PasswordParts
                 {
-                    MinimumCount = int.TryParse(stringParts[0], out var minimumCount) ? minimumCount : 0,
-                    MaximumCount = int.TryParse(stringParts[1], out var maximumCount) ? maximumCount : 0,
+                    FirstPosition = int.TryParse(stringParts[0], out var firstPosition) ? firstPosition : 0,
+                    SecondPosition = int.TryParse(stringParts[1], out var secondPosition) ? secondPosition : 0,
                     StringToSearchFor = stringParts[2],
                     StringToBeSearched = stringParts[3]
                 };
@@ -44,14 +44,19 @@ namespace Advent2020.Business.Days
             throw new InvalidDataException($"The string `{parsableString}` is in an incorrect format.  Received `{stringParts.Length}` parts, but expected `{_expectedParts}`.");
         }
 
-
         public bool IsPasswordValid(PasswordParts passwordParts)
         {
-            var characterCount = passwordParts.StringToBeSearched.Count(s => s.ToString().Equals(passwordParts.StringToSearchFor));
+            var sequenceToCheckAgainst = 
+                passwordParts.StringToBeSearched
+                    .Select((Letter, Index) => new { Letter = Letter.ToString(), Index })
+                    .Where(x => x.Letter == passwordParts.StringToSearchFor)
+                    .Select(x => x.Index)
+                    .OrderBy(x => x)
+                    .ToArray();
 
-            return
-                characterCount >= passwordParts.MinimumCount
-                && characterCount <= passwordParts.MaximumCount;
+            var sequenceToCheckFor = new int[] {passwordParts.FirstPositionIndex, passwordParts.SecondPositionIndex};
+
+            return sequenceToCheckFor.Except(sequenceToCheckAgainst).Count() == 1;
         }
     }
 }

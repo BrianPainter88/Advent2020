@@ -27,6 +27,8 @@ namespace Advent2020.Tests
         {
             var result = _day2.Parse(parsableString);
 
+            Assert.That(result, Has.Property("MinimumCount").EqualTo(expectedFirstPosition));
+            Assert.That(result, Has.Property("MaximumCount").EqualTo(expectedSecondPosition));
             Assert.That(result, Has.Property("FirstPosition").EqualTo(expectedFirstPosition));
             Assert.That(result, Has.Property("SecondPosition").EqualTo(expectedSecondPosition));
             Assert.That(result, Has.Property("StringToSearchFor").EqualTo(expectedLetter));
@@ -41,16 +43,16 @@ namespace Advent2020.Tests
             Assert.Throws<InvalidDataException>(() => _day2.Parse(parsableString));
         }
 
-        [TestCaseSource(nameof(ValidPasswordParts))]
-        public void IsPasswordValid_WithValidData_ValidationPasses(PasswordParts passwordParts)
+        [TestCaseSource(nameof(ValidPasswordPartsForPart1))]
+        public void IsPart1PasswordValid_WithValidData_ValidationPasses(PasswordParts passwordParts)
         {
-            Assert.True(_day2.IsPasswordValid(passwordParts));
+            Assert.True(_day2.IsPart1PasswordValid(passwordParts));
         }
 
-        [TestCaseSource(nameof(InvalidPasswordParts))]
-        public void IsPasswordValid_WithInvalidData_ValidationFails(PasswordParts passwordParts)
+        [TestCaseSource(nameof(InvalidPasswordPartsForPart1))]
+        public void IsPart1PasswordValid_WithInvalidData_ValidationFails(PasswordParts passwordParts)
         {
-            Assert.False(_day2.IsPasswordValid(passwordParts));
+            Assert.False(_day2.IsPart1PasswordValid(passwordParts));
         }
 
         [Test]
@@ -58,12 +60,65 @@ namespace Advent2020.Tests
         {
             _adventResourcesMock
                 .Setup(a => a.GetDay2Resources())
-                .Returns(Get3ValidAnd2InvalidTestPasswords());
+                .Returns(Get3ValidAnd2InvalidTestPasswordsForPart1());
 
-            Assert.That(_day2.GetAnswer(), Is.EqualTo(3));
+            Assert.That(_day2.GetPart1Answer(), Is.EqualTo(3));
         }
 
-        private IEnumerable<string> Get3ValidAnd2InvalidTestPasswords()
+        [TestCaseSource(nameof(ValidPasswordPartsForPart2))]
+        public void IsPart2PasswordValid_WithValidData_ValidationPasses(PasswordParts passwordParts)
+        {
+            Assert.True(_day2.IsPart2PasswordValid(passwordParts));
+        }
+
+        [TestCaseSource(nameof(InvalidPasswordPartsForPart2))]
+        public void IsPart2PasswordValid_WithInvalidData_ValidationFails(PasswordParts passwordParts)
+        {
+            Assert.False(_day2.IsPart2PasswordValid(passwordParts));
+        }
+
+        [Test]
+        public void GetPart2Answer_Given5PasswordsWith3Valid_Returns3()
+        {
+            _adventResourcesMock
+                .Setup(a => a.GetDay2Resources())
+                .Returns(Get3ValidAnd2InvalidTestPasswordsForPart2());
+
+            Assert.That(_day2.GetPart2Answer(), Is.EqualTo(3));
+        }
+
+        private IEnumerable<string> Get3ValidAnd2InvalidTestPasswordsForPart1()
+        {
+            return new[]
+            {
+                "1-3 a: abcde",
+                "1-3 a: bbbbb",
+                "2-4 a: aabbccddeeaa",
+                "2-4 a: baaaaab",
+                "5-10 a: abacadaeafaga"
+            };
+        }
+
+        private static IEnumerable<PasswordParts> ValidPasswordPartsForPart1()
+        {
+            return new[]
+            {
+                new PasswordParts {MinimumCount = 1, MaximumCount = 3, StringToSearchFor = "a", StringToBeSearched = "abcde"},
+                new PasswordParts {MinimumCount = 2, MaximumCount = 4, StringToSearchFor = "a", StringToBeSearched = "aabbccddeeaa"},
+                new PasswordParts {MinimumCount = 5, MaximumCount = 10, StringToSearchFor = "a", StringToBeSearched = "abacadaeafaga"}
+            };
+        }
+
+        private static IEnumerable<PasswordParts> InvalidPasswordPartsForPart1()
+        {
+            return new[]
+            {
+                new PasswordParts {MinimumCount = 1, MaximumCount = 3, StringToSearchFor = "a", StringToBeSearched = "bbbbb"},
+                new PasswordParts {MinimumCount = 2, MaximumCount = 4, StringToSearchFor = "a", StringToBeSearched = "baaaaab"}
+            };
+        }
+
+        private IEnumerable<string> Get3ValidAnd2InvalidTestPasswordsForPart2()
         {
             return new[]
             {
@@ -75,7 +130,7 @@ namespace Advent2020.Tests
             };
         }
 
-        private static IEnumerable<PasswordParts> ValidPasswordParts()
+        private static IEnumerable<PasswordParts> ValidPasswordPartsForPart2()
         {
             return new[]
             {
@@ -85,7 +140,7 @@ namespace Advent2020.Tests
             };
         }
 
-        private static IEnumerable<PasswordParts> InvalidPasswordParts()
+        private static IEnumerable<PasswordParts> InvalidPasswordPartsForPart2()
         {
             return new[]
             {

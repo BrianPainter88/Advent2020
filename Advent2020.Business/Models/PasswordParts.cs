@@ -2,6 +2,8 @@
 {
     public class PasswordParts
     {
+        public int MinimumCount { get; set; }
+        public int MaximumCount { get; set; }
         public int FirstPosition { get; set; }
         public int SecondPosition { get; set; }
         public string StringToSearchFor { get; set; }

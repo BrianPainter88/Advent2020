@@ -17,13 +17,22 @@ namespace Advent2020.Business.Days
             _resources = resources;
         }
 
-        public int GetAnswer()
+        public object GetPart1Answer()
         {
             var resources = _resources.GetDay2Resources();
 
             var parsedResources = resources.Select(Parse);
 
-            return parsedResources.Count(IsPasswordValid);
+            return parsedResources.Count(IsPart1PasswordValid);
+        }
+
+        public int GetPart2Answer()
+        {
+            var resources = _resources.GetDay2Resources();
+
+            var parsedResources = resources.Select(Parse);
+
+            return parsedResources.Count(IsPart2PasswordValid);
         }
         
         public PasswordParts Parse(string parsableString)
@@ -34,6 +43,8 @@ namespace Advent2020.Business.Days
             {
                 return new PasswordParts
                 {
+                    MinimumCount = int.TryParse(stringParts[0], out var minimumCount) ? minimumCount : 0,
+                    MaximumCount = int.TryParse(stringParts[1], out var maximumCount) ? maximumCount : 0,
                     FirstPosition = int.TryParse(stringParts[0], out var firstPosition) ? firstPosition : 0,
                     SecondPosition = int.TryParse(stringParts[1], out var secondPosition) ? secondPosition : 0,
                     StringToSearchFor = stringParts[2],
@@ -44,7 +55,16 @@ namespace Advent2020.Business.Days
             throw new InvalidDataException($"The string `{parsableString}` is in an incorrect format.  Received `{stringParts.Length}` parts, but expected `{_expectedParts}`.");
         }
 
-        public bool IsPasswordValid(PasswordParts passwordParts)
+        public bool IsPart1PasswordValid(PasswordParts passwordParts)
+        {
+            var characterCount = passwordParts.StringToBeSearched.Count(s => s.ToString().Equals(passwordParts.StringToSearchFor));
+
+            return
+                characterCount >= passwordParts.MinimumCount
+                && characterCount <= passwordParts.MaximumCount;
+        }
+
+        public bool IsPart2PasswordValid(PasswordParts passwordParts)
         {
             var sequenceToCheckAgainst = 
                 passwordParts.StringToBeSearched

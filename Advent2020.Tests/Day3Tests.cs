@@ -51,7 +51,7 @@ namespace Advent2020.Tests
         }
 
         [Test]
-        public void GetPart1Anser_WhenGivenData_GivesCorrectTreeCount()
+        public void GetPart1Answer_WhenGivenData_GivesCorrectTreeCount()
         {
             _adventResourcesMock
                 .Setup(a => a.GetDay3Resources())
@@ -62,15 +62,27 @@ namespace Advent2020.Tests
             Assert.That(results, Is.EqualTo(3));
         }
 
+        [Test]
+        public void GetPart2Answer_WhenGivenData_GivesCorrectTreeCount()
+        {
+            _adventResourcesMock
+                .Setup(a => a.GetDay3Resources())
+                .Returns(SampleData);
+
+            var results = _day3.GetPart2Answer();
+
+            Assert.That(results, Is.EqualTo(12));
+        }
+
         private static string[] SampleData()
         {
             return new[]
             {
                 "#..#.....#.#.....#",
-                "##.#.....#....##.#",
+                "##.#....##....##.#",
                 "...#...#.#.......#",
                 "...#.....#...###.#",
-                "##.#...#.#..#....#",
+                "####...#.#..#....#",
             };
         }
 

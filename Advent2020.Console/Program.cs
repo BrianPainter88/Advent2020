@@ -39,6 +39,9 @@ namespace Advent2020.Program
 
                 var part1Answer = day3.GetPart1Answer();
                 WriteAnswerToConsole("Day3 (Part1)", part1Answer, ConsoleColor.DarkGray);
+
+                var part2Answer = day3.GetPart2Answer();
+                WriteAnswerToConsole("Day3 (Part2)", part2Answer, ConsoleColor.Yellow);
             }
         }
 

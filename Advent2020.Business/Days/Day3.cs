@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,15 @@ namespace Advent2020.Business.Days
         private const int _verticalMoves = 1;
         private const string _treeCharacter = "#";
 
+        private static (int lateralMoves, int verticalMoves)[] _slopes = new[]
+        {
+            (1, 1),
+            (3, 1),
+            (5, 1),
+            (7, 1),
+            (1, 2)
+        };
+
         public Day3(IResources adventResources) : base(adventResources)
         {
         }
@@ -24,6 +34,27 @@ namespace Advent2020.Business.Days
             var characters = TraverseThroughArray(parsedData, _lateralMoves, _verticalMoves);
 
             return characters.Count(c => c.Equals(_treeCharacter));
+        }
+
+        public long GetPart2Answer()
+        {
+            var data = _adventResources.GetDay3Resources();
+            var parsedData = Parse(data);
+
+            var trees = new List<int>();
+
+            foreach (var slope in _slopes)
+            {
+                var characters = TraverseThroughArray(parsedData, slope.lateralMoves, slope.verticalMoves);
+                trees.Add(characters.Count(c => c.Equals(_treeCharacter)));
+            }
+
+            return CalculateProduct(trees);
+        }
+
+        private static long CalculateProduct(IEnumerable <int> trees)
+        {
+            return trees.Aggregate<int, long>(1, (current, treeCount) => current * treeCount);
         }
 
         public IEnumerable<string> TraverseThroughArray(string[][] data, int lateralMoves, int verticalMoves)

@@ -19,5 +19,10 @@ namespace Advent2020.Business
         {
             return Resources.Day2.Split(Environment.NewLine);
         }
+
+        public IEnumerable<string> GetDay3Resources()
+        {
+            return Resources.Day3.Split(Environment.NewLine);
+        }
     }
 }

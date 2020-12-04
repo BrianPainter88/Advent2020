@@ -4,18 +4,15 @@ using Advent2020.Business.Interfaces;
 
 namespace Advent2020.Business.Days
 {
-    public class Day1
+    public class Day1 : DayBase
     {
-        private readonly IResources _resources;
-
-        public Day1(IResources resources)
+        public Day1(IResources resources) : base(resources)
         {
-            _resources = resources;
         }
 
         public int GetPart1Answer(int numberToEqual)
         {
-            var values = _resources.GetDay1Resources();
+            var values = _adventResources.GetDay1Resources();
 
             var (firstNumber, secondNumber) = GetPairToEqualValue(numberToEqual, values);
 
@@ -24,7 +21,7 @@ namespace Advent2020.Business.Days
 
         public int GetPart2Answer(int numberToEqual)
         {
-            var values = _resources.GetDay1Resources();
+            var values = _adventResources.GetDay1Resources();
 
             var (firstNumber, secondNumber, thirdNumber) = GetTrioToEqualValue(numberToEqual, values);
 

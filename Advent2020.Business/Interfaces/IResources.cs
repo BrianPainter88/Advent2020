@@ -6,5 +6,6 @@ namespace Advent2020.Business.Interfaces
     {
         IEnumerable<int> GetDay1Resources();
         IEnumerable<string> GetDay2Resources();
+        IEnumerable<string> GetDay3Resources();
     }
 }

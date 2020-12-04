@@ -33,6 +33,13 @@ namespace Advent2020.Program
                 var part2Answer = day2.GetPart2Answer();
                 WriteAnswerToConsole("Day2 (Part2)", part2Answer, ConsoleColor.Blue);
             }
+            else if (dayNumber == 3)
+            {
+                var day3 = new Day3(adventResources);
+
+                var part1Answer = day3.GetPart1Answer();
+                WriteAnswerToConsole("Day3 (Part1)", part1Answer, ConsoleColor.DarkGray);
+            }
         }
 
         private static void WriteAnswerToConsole(string label, object message, ConsoleColor foregroundColor)

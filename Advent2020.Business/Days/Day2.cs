@@ -6,20 +6,17 @@ using Advent2020.Business.Models;
 
 namespace Advent2020.Business.Days
 {
-    public class Day2
+    public class Day2 : DayBase
     {
         private const int _expectedParts = 4;
 
-        private readonly IResources _resources;
-
-        public Day2(IResources resources)
+        public Day2(IResources resources) : base(resources)
         {
-            _resources = resources;
         }
 
         public object GetPart1Answer()
         {
-            var resources = _resources.GetDay2Resources();
+            var resources = _adventResources.GetDay2Resources();
 
             var parsedResources = resources.Select(Parse);
 
@@ -28,7 +25,7 @@ namespace Advent2020.Business.Days
 
         public int GetPart2Answer()
         {
-            var resources = _resources.GetDay2Resources();
+            var resources = _adventResources.GetDay2Resources();
 
             var parsedResources = resources.Select(Parse);
 

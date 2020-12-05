@@ -50,8 +50,8 @@ namespace Advent2020.Program
                 var part1Answer = day4.GetPart1Answer();
                 WriteAnswerToConsole("Day4 (Part1)", part1Answer, ConsoleColor.White);
 
-                //var part2Answer = day3.GetPart2Answer();
-                //WriteAnswerToConsole("Day3 (Part2)", part2Answer, ConsoleColor.Yellow);
+                var part2Answer = day4.GetPart2Answer();
+                WriteAnswerToConsole("Day4 (Part2)", part2Answer, ConsoleColor.DarkRed);
             }
         }
 

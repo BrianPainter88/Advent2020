@@ -40,5 +40,10 @@ namespace Advent2020.Business
                             .ToDictionary(k => k[0], v => v[1])
                     );
         }
+
+        public IEnumerable<string> GetDay5Resources()
+        {
+            return Resources.Day5.Split(Environment.NewLine);
+        }
     }
 }

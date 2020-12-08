@@ -302,5 +302,65 @@ namespace Advent2020.Business {
                 return ResourceManager.GetString("Day5", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bahmtpujokxdqlyi
+        ///efqksvrctzhmngw
+        ///
+        ///zfyhxoeuljmp
+        ///wrpjeymoxhfzul
+        ///ouxmhyjzpfle
+        ///zfouaelhxmynvptj
+        ///zlfojexmyhup
+        ///
+        ///wgfjlotnrx
+        ///xntjogrwfl
+        ///wrxgotnjfla
+        ///
+        ///qjtgski
+        ///bfysrculx
+        ///vwzdtpsq
+        ///
+        ///ahsp
+        ///saph
+        ///pihazus
+        ///hzptgacs
+        ///dpahksq
+        ///
+        ///ksvhn
+        ///kns
+        ///
+        ///urswemgxfn
+        ///uvgbwjli
+        ///yuczthgwp
+        ///kbuowg
+        ///
+        ///egnsbduqwtjpivxoyc
+        ///ugiwvsnjobyeqdtcxp
+        ///wqtvxseibgjupdcnoy
+        ///gecyvoniudwtbjpqsx
+        ///
+        ///jvtzcy
+        ///tzyecu
+        ///zvtmyc
+        ///ycktzm
+        ///
+        ///fvlrjwdnyq
+        ///nyfvwdjql
+        ///dqlyvfwjn
+        ///dlfyvxjwnq
+        ///
+        ///nmvjcdaywoxpbliqteskgr
+        ///wjgqutiepyaslbdomxkrvn
+        ///
+        ///ozv
+        ///qsukd
+        ///        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Day6 {
+            get {
+                return ResourceManager.GetString("Day6", resourceCulture);
+            }
+        }
     }
 }

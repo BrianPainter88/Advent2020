@@ -34,6 +34,22 @@ namespace Advent2020.Business.Days
             return highestSeatId;
         }
 
+        public int GetPart2Answer()
+        {
+            var seatList = new List<int>();
+            foreach (var pattern in _adventResources.GetDay5Resources())
+            {
+                var rowId = GetRowIdFromPattern(pattern);
+                var columnId = GetColumnIdFromPattern(pattern);
+
+                var seatId = rowId * 8 + columnId;
+                seatList.Add(seatId);
+            }
+
+            var seatRange = Enumerable.Range(seatList.Min(), seatList.Count());
+            return seatRange.Except(seatList).Single();
+        }
+
         public int GetRowIdFromPattern(string pattern)
         {
             var range = new SeatingRange(0, 127);

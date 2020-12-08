@@ -60,8 +60,8 @@ namespace Advent2020.Program
                 var part1Answer = day5.GetPart1Answer();
                 WriteAnswerToConsole("Day5 (Part1)", part1Answer, ConsoleColor.DarkGreen);
 
-                //var part2Answer = day5.GetPart2Answer();
-                //WriteAnswerToConsole("Day5 (Part2)", part2Answer, ConsoleColor.DarkRed);
+                var part2Answer = day5.GetPart2Answer();
+                WriteAnswerToConsole("Day5 (Part2)", part2Answer, ConsoleColor.DarkRed);
             }
         }
 

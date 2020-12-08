@@ -60,20 +60,33 @@ namespace Advent2020.Tests
         public void GetPart1Answer_GivenSourceData_ReturnsHighestSeatId()
         {
             _adventResourcesMock.Setup(r => r.GetDay5Resources())
-                .Returns(PatternsTest);
+                .Returns(_patternsTest);
 
             Assert.That(_day5.GetPart1Answer(), Is.EqualTo(820));
         }
 
-        private static string[] PatternsTest()
+        [Test]
+        public void GetPart2Answer_GivenSourceData_ReturnsMissingId()
         {
-            return new[]
-            {
-                "FBFBBFFRLR",
-                "BFFFBBFRRR",
-                "FFFBBBFRRR",
-                "BBFFBBFRLL"
-            };
+            _adventResourcesMock.Setup(r => r.GetDay5Resources())
+                .Returns(_consecutivePatterns);
+
+            Assert.That(_day5.GetPart2Answer(), Is.EqualTo(258));
         }
+
+        private static string[] _patternsTest =
+        {
+            "FBFBBFFRLR",
+            "BFFFBBFRRR",
+            "FFFBBBFRRR",
+            "BBFFBBFRLL"
+        };
+
+        private static string[] _consecutivePatterns = {
+            "FBFFFFFLLL",
+            "FBFFFFFLLR",
+            "FBFFFFFLRR",
+            "FBFFFFFRLL"
+        };
     }
 }

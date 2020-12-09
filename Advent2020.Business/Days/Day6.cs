@@ -17,29 +17,49 @@ namespace Advent2020.Business.Days
             var groupings = GetGroupings();
 
             return groupings
-                .SelectMany(g => g.Distinct())
+                .SelectMany(g => (g.Answers ?? Array.Empty<string>()).Distinct())
                 .Count();
         }
 
-        public IEnumerable<string[]> GetGroupings()
+        public int GetPart2Answer()
+        {
+            var groupings = GetGroupings();
+
+            return
+                groupings
+                    .Select(g =>
+                        new {
+                            g.GroupMembers,
+                            Answers =
+                                g.Answers
+                                    .GroupBy(a => a)
+                                    .Select(a => new {a.Key, Count = a.Count() })
+                        })
+                    .Sum(g => g.Answers.Count(a => a.Count == g.GroupMembers));
+        }
+
+        public IEnumerable<(int GroupMembers, string[] Answers)> GetGroupings()
         {
             var resources = _adventResources.GetDay6Resources();
 
-            var mainList = new List<string[]>();
+            var mainList = new List<(int GroupMembers, string[] Answers)>();
             var records = new string[] { };
+            var groupMembers = 0;
 
             foreach (var line in resources)
             {
                 if (string.IsNullOrWhiteSpace(line))
                 {
-                    mainList.Add(records);
+                    mainList.Add((groupMembers, records));
                     records = Array.Empty<string>();
+                    groupMembers = 0;
                     continue;
                 }
 
+                groupMembers++;
                 records = records.Concat(line.Select(l => l.ToString())).ToArray();
             }
-            mainList.Add(records);
+            mainList.Add((groupMembers, records));
 
             return mainList;
         }

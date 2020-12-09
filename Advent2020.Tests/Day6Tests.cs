@@ -40,6 +40,15 @@ namespace Advent2020.Tests
             Assert.That(_day6.GetPart1Answer(), Is.EqualTo(11));
         }
 
+        [Test]
+        public void GetPart2Answer_GivenExampleData_ShouldBe6()
+        {
+            _adventResourcesMock.Setup(a => a.GetDay6Resources())
+                .Returns(_exampleData);
+
+            Assert.That(_day6.GetPart2Answer(), Is.EqualTo(6));
+        }
+
         private static string[] _exampleData =
         {
             "abc",
@@ -59,13 +68,13 @@ namespace Advent2020.Tests
             "b"
         };
 
-        private static IEnumerable<string[]> _exampleGroupings = new[]
+        private static IEnumerable<(int GroupMembers, string[] Answers)> _exampleGroupings = new (int GroupMembers, string[] Answers)[]
         {
-            new [] {"a", "b", "c"},
-            new [] {"a", "b", "c"},
-            new [] {"a", "b", "a", "c"},
-            new [] {"a", "a", "a", "a"},
-            new [] {"b"}
+            (1, new [] {"a", "b", "c"}),
+            (3, new [] {"a", "b", "c"}),
+            (2, new [] {"a", "b", "a", "c"}),
+            (4, new [] {"a", "a", "a", "a"}),
+            (1, new [] {"b"})
         };
     }
 }
